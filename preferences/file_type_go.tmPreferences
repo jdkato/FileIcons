@@ -2,7 +2,7 @@
 <plist version="1.0">
   <dict>
     <key>scope</key>
-    <string>source.go</string>
+    <string>source.go, source.gomod, source.gosum</string>
     <key>settings</key>
     <dict>
       <key>icon</key>
