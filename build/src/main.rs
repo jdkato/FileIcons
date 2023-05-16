@@ -1,5 +1,5 @@
 use std::{
-    env, fs,
+    fs,
     path::{Path, PathBuf},
     str,
 };
@@ -10,31 +10,11 @@ use tiny_skia;
 use usvg;
 
 fn build_dir() -> PathBuf {
-    let exe_path = env::current_exe().ok().unwrap();
-    return exe_path
-        .parent()
-        .unwrap()
-        .parent()
-        .unwrap()
-        .parent()
-        .unwrap()
-        .to_path_buf();
+    PathBuf::from(".")
 }
 
 fn theme_dir() -> PathBuf {
-    let exe_path = env::current_exe().ok().unwrap();
-    let mut path = exe_path
-        .parent()
-        .unwrap()
-        .parent()
-        .unwrap()
-        .parent()
-        .unwrap()
-        .parent()
-        .unwrap()
-        .to_path_buf();
-    path.push("theme");
-    return path;
+    PathBuf::from("../FileIcons")
 }
 
 fn json_from_file(build_dir: &Path, name: &Path) -> json::JsonValue {
