@@ -1,25 +1,37 @@
-use std::{env, fs, str, path::{Path, PathBuf}};
-use usvg;
-use tiny_skia;
-use resvg;
+use std::{
+    env, fs,
+    path::{Path, PathBuf},
+    str,
+};
+
 use json;
+use resvg;
+use tiny_skia;
+use usvg;
 
 fn build_dir() -> PathBuf {
     let exe_path = env::current_exe().ok().unwrap();
     return exe_path
-        .parent().unwrap()
-        .parent().unwrap()
-        .parent().unwrap()
+        .parent()
+        .unwrap()
+        .parent()
+        .unwrap()
+        .parent()
+        .unwrap()
         .to_path_buf();
 }
 
 fn theme_dir() -> PathBuf {
     let exe_path = env::current_exe().ok().unwrap();
     let mut path = exe_path
-        .parent().unwrap()
-        .parent().unwrap()
-        .parent().unwrap()
-        .parent().unwrap()
+        .parent()
+        .unwrap()
+        .parent()
+        .unwrap()
+        .parent()
+        .unwrap()
+        .parent()
+        .unwrap()
         .to_path_buf();
     path.push("theme");
     return path;
@@ -51,7 +63,11 @@ fn main() {
 
         let svg_data = match std::fs::read(&full_icon_path) {
             Ok(v) => v,
-            Err(e) => panic!("Failed to read icon file {} ({})", full_icon_path.display(), e),
+            Err(e) => panic!(
+                "Failed to read icon file {} ({})",
+                full_icon_path.display(),
+                e
+            ),
         };
 
         let s = match str::from_utf8(&svg_data) {
@@ -60,7 +76,7 @@ fn main() {
         };
 
         // colorize the absolute hack way
-        let color = &colors[kvp.1.as_str().unwrap()];
+        let color = &colors["gray"];
         let svg_data = s.replace("#000", color.as_str().unwrap());
 
         let opt = usvg::Options::default();
@@ -78,7 +94,11 @@ fn main() {
             full_output_path.push(&theme_dir);
             full_output_path.push(format!("{}{}.png", kvp.0, suffix));
 
-            println!("Building {} to {}", full_icon_path.display(), full_output_path.display());
+            println!(
+                "Building {} to {}",
+                full_icon_path.display(),
+                full_output_path.display()
+            );
             let mut pixmap = tiny_skia::Pixmap::new(size, size).unwrap();
             resvg::render(&rtree, usvg::FitTo::Size(size, size), pixmap.as_mut()).unwrap();
 
