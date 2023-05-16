@@ -56,7 +56,7 @@ fn main() {
         };
 
         // colorize the absolute hack way
-        let color = &colors["gray"];
+        let color = &colors[kvp.1.as_str().unwrap()];
         let svg_data = s.replace("#000", color.as_str().unwrap());
 
         let opt = usvg::Options::default();
