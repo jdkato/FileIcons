@@ -1,0 +1,12 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: DITA
+file_extensions:
+  - dita
+scope: text.xml.dita
+hidden: true
+contexts:
+  main:
+    - include: scope:text.xml#prototype
+    - include: scope:text.xml
