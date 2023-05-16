@@ -14,7 +14,7 @@ fn build_dir() -> PathBuf {
 }
 
 fn theme_dir() -> PathBuf {
-    PathBuf::from("../FileIcons")
+    PathBuf::from("../theme")
 }
 
 fn json_from_file(build_dir: &Path, name: &Path) -> json::JsonValue {
