@@ -47,7 +47,7 @@
   "file_type_fixedform-fortran": "blue",
   "file_type_git": "orange",
   "file_type_go": "cyan",
-  "file_type_gno": "graphite",
+  "file_type_gno": "gray",
   "file_type_gradle": "cyan",
   "file_type_graphviz": "cyan",
   "file_type_groovy": "cyan",
